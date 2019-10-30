@@ -3,6 +3,7 @@ package ch.zli.m223.punchclock.controller;
 import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.service.EntryService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -28,4 +29,18 @@ public class EntryController {
     public Entry createEntry(@Valid @RequestBody Entry entry) {
         return entryService.createEntry(entry);
     }
+
+    @DeleteMapping("/{entryId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ResponseEntity deleteEntry(@PathVariable("entryId") long entryId) {
+        try {
+            entryService.deleteEntry(entryId);
+        } catch(Exception e) {
+            return new ResponseEntity<>("Request Couldn't be Processed", HttpStatus.BAD_REQUEST);
+        }
+            return new ResponseEntity<>("Request was Accepted", HttpStatus.ACCEPTED);
+
+    }
+
+
 }

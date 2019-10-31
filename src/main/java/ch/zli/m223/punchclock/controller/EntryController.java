@@ -30,6 +30,12 @@ public class EntryController {
         return entryService.createEntry(entry);
     }
 
+    @PutMapping("{entryId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Entry updateEntry(@PathVariable("entryId") long entryId, @RequestBody Entry entry)  {
+        return entryService.updateEntry(entryId,entry);
+    }
+
     @DeleteMapping("/{entryId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity deleteEntry(@PathVariable("entryId") long entryId) {
@@ -41,6 +47,4 @@ public class EntryController {
             return new ResponseEntity<>("Request was Accepted", HttpStatus.ACCEPTED);
 
     }
-
-
 }

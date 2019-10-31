@@ -1,5 +1,4 @@
 package ch.zli.m223.punchclock.controller;
-
 import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.service.EntryService;
 import org.springframework.http.HttpStatus;
@@ -7,12 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.Validator;
 import java.util.List;
 
 @RestController
 @RequestMapping("/entries")
 public class EntryController {
     private EntryService entryService;
+    Validator validator;
 
     public EntryController(EntryService entryService) {
         this.entryService = entryService;
@@ -27,7 +28,7 @@ public class EntryController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Entry createEntry(@Valid @RequestBody Entry entry) {
-        return entryService.createEntry(entry);
+            return entryService.createEntry(entry);
     }
 
     @PutMapping("{entryId}")
@@ -45,6 +46,5 @@ public class EntryController {
             return new ResponseEntity<>("Request Couldn't be Processed", HttpStatus.BAD_REQUEST);
         }
             return new ResponseEntity<>("Request was Accepted", HttpStatus.ACCEPTED);
-
     }
 }

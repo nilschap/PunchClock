@@ -32,8 +32,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         try {
-            ApplicationUser creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), ApplicationUser.class);
+            ch.zli.m223.punchclock.domain.ApplicationUser creds = new ObjectMapper()
+                    .readValue(req.getInputStream(), ch.zli.m223.punchclock.domain.ApplicationUser.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -51,6 +51,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse res,
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
+
+        res.addHeader("Access-Control-Expose-Headers", "*");
 
         String token = JWT.create()
                 .withSubject(((User) auth.getPrincipal()).getUsername())

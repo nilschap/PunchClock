@@ -1,8 +1,6 @@
 package ch.zli.m223.punchclock.domain;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class ApplicationUser {
@@ -11,6 +9,9 @@ public class ApplicationUser {
     private long id;
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL)
+    private Set<Entry> entry;
 
     public long getId() {
         return id;

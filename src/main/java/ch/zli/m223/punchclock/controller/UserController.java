@@ -29,19 +29,11 @@ public class UserController {
         applicationUserRepository.save(user);
     }
 
-    /*
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationUser> getAllEntries() {
         return userDetailsService.findAll();
-    }
-    */
-
-
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void test() {
-        System.out.println("test");
     }
 
 

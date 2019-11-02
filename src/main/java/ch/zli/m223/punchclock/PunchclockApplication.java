@@ -1,5 +1,6 @@
 package ch.zli.m223.punchclock;
 
+import ch.zli.m223.punchclock.domain.Entry;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

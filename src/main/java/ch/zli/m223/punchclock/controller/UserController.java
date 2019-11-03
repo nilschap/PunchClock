@@ -3,6 +3,7 @@ import ch.zli.m223.punchclock.domain.ApplicationUser;
 import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.repository.ApplicationUserRepository;
 import ch.zli.m223.punchclock.service.UserDetailsServiceImpl;
+import ch.zli.m223.punchclock.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,10 @@ public class UserController {
 
     private ApplicationUserRepository applicationUserRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private UserDetailsServiceImpl userDetailsService;
+    private UserService userService;
 
-    public UserController(ApplicationUserRepository applicationUserRepository,
-                          BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserController(UserService userService, ApplicationUserRepository applicationUserRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userService = userService;
         this.applicationUserRepository = applicationUserRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -32,9 +33,11 @@ public class UserController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ApplicationUser> getAllEntries() {
-        return userDetailsService.findAll();
+    public List<ApplicationUser> getAllUsers() {
+        return userService.findAll();
     }
+
+
 
 
 }

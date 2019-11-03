@@ -16,7 +16,7 @@ public class Entry {
     private Long id;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private ApplicationUser applicationUser;
 
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
@@ -35,6 +35,14 @@ public class Entry {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ApplicationUser getApplicationUser() {
+        return applicationUser;
+    }
+
+    public void setApplicationUser(ApplicationUser applicationUser) {
+        this.applicationUser = applicationUser;
     }
 
     public LocalDateTime getCheckIn() {

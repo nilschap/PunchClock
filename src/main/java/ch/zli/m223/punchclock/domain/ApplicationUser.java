@@ -1,4 +1,6 @@
 package ch.zli.m223.punchclock.domain;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,7 +12,9 @@ public class ApplicationUser {
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "applicationUser", cascade = CascadeType.ALL)
+
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "applicationUser")
     private Set<Entry> entry;
 
     public long getId() {

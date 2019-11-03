@@ -27,7 +27,7 @@ public class EntryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Entry createEntry(@Valid @RequestBody Entry entry) {
+    public Entry createEntry(@Valid @PathVariable("userID") long userID, @RequestBody Entry entry) {
             return entryService.createEntry(entry);
     }
 

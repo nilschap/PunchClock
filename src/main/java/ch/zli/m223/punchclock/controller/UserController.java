@@ -1,8 +1,6 @@
 package ch.zli.m223.punchclock.controller;
 import ch.zli.m223.punchclock.domain.ApplicationUser;
-import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.repository.ApplicationUserRepository;
-import ch.zli.m223.punchclock.service.UserDetailsServiceImpl;
 import ch.zli.m223.punchclock.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,6 +34,19 @@ public class UserController {
     public List<ApplicationUser> getAllUsers() {
         return userService.findAll();
     }
+
+    @PutMapping("/{userId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ApplicationUser updateEntry(@PathVariable("userId") long userId, @RequestBody ApplicationUser user)  {
+        return userService.updateUser(userId,user);
+    }
+
+    @DeleteMapping("/{userId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteUser(@PathVariable("userId") long userId) {
+          userService.deleteUser(userId);
+    }
+
 
 
 

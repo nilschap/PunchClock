@@ -5,16 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.Validator;
 import java.util.List;
 
 @RestController
 @RequestMapping("/entries")
 public class EntryController {
     private EntryService entryService;
-    Validator validator;
-
     public EntryController(EntryService entryService) {
         this.entryService = entryService;
     }
@@ -27,7 +23,7 @@ public class EntryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Entry createEntry(@Valid @PathVariable("userID") long userID, @RequestBody Entry entry) {
+    public Entry createEntry(@RequestBody Entry entry) {
             return entryService.createEntry(entry);
     }
 

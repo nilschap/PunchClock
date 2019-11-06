@@ -14,17 +14,21 @@ public class EntryService {
         this.entryRepository = entryRepository;
     }
 
+    //Create new entry using entry Repository service
     public Entry createEntry(Entry entry) {
         entryRepository.saveAndFlush(entry);
         return entryRepository.saveAndFlush(entry);
     }
 
+    //..
     public List<Entry> findAll() {
         return entryRepository.findAll();
     }
 
+    //..
     public void deleteEntry(Long id) { entryRepository.deleteById(id); }
 
+    //..
     public Entry updateEntry(Long entryId,Entry entry) {
         Entry entry1 = entryRepository.getOne(entryId);
         entry1.setCheckIn(entry.getCheckIn());

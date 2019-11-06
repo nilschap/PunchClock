@@ -9,16 +9,18 @@ import java.util.List;
 @Service
 public class NoteService {
     private NoteRepository noteRepository;
-
+    //Inject service
     public NoteService(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
     }
 
+    //..
     public Note createNote(Note note) {
         noteRepository.saveAndFlush(note);
         return noteRepository.saveAndFlush(note);
     }
 
+    //Call Note Repository to return all notes
     public List<Note> findAll() {
         return noteRepository.findAll();
     }

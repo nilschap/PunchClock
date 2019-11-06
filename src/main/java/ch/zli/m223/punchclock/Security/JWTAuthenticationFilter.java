@@ -1,6 +1,5 @@
 package ch.zli.m223.punchclock.Security;
 
-import ch.zli.m223.punchclock.domain.ApplicationUser;
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +20,7 @@ import java.util.Date;
 import static ch.zli.m223.punchclock.Security.SecurityConstants.*;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
+//No Comments Copy pasted from Tutorial Minor changes made while trying to fix Cors Problem.
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
 
@@ -53,7 +53,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication auth) throws IOException, ServletException {
 
         res.addHeader("Access-Control-Expose-Headers", "*");
-
         String token = JWT.create()
                 .withSubject(((User) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import static ch.zli.m223.punchclock.Security.SecurityConstants.HEADER_STRING;
 import static ch.zli.m223.punchclock.Security.SecurityConstants.SECRET;
 import static ch.zli.m223.punchclock.Security.SecurityConstants.TOKEN_PREFIX;
-
+//No Comments Copy pasted from Tutorial Minor changes made while trying to fix Cors Problem.
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     public JWTAuthorizationFilter(AuthenticationManager authManager) {

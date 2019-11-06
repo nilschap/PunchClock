@@ -18,24 +18,45 @@ public class NoteController {
     }
 
 
+    /**
+     * Returns all Notes.
+     * @returns List of Notes.
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Note> getAllNotes() {
         return noteService.findAll();
     }
 
+
+    /**
+     * Creates note.
+     * @returns The added note.
+     * @RequestBody Retrive Note that should be added
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Note createNote(@RequestBody Note note) {
         return noteService.createNote(note);
     }
 
+    /**
+     * Update Note
+     * @returns returns the updated Note
+     * @RequestBody Gets new Note with edited data
+     * @PathVariable Gets the NoteId from the Note that will be updated
+     */
     @PutMapping("/{noteId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Note updateNote(@PathVariable("noteId") long noteId, @RequestBody Note note)  {
         return noteService.updateEntry(noteId,note);
     }
 
+    /**
+     * Delete Note
+     * @returns returns the deleted Note
+     * @PathVariable Gets the NoteId from the entry that should be deleted
+     */
     @DeleteMapping("/{noteId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity deleteNote(@PathVariable("noteId") long noteId) {
